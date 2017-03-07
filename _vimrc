@@ -85,15 +85,17 @@ let g:tagbar_ctags_bin = 'c:\ctags58\ctags.exe'
 
 " Mapping {{{
 " map C-n shortcut to open NERDTree
-map <C-n> :NERDTreeToggle<CR>
+noremap <C-n> :NERDTreeToggle<CR>
 " change to forward/back slashes
 nnoremap <Leader>/ :let tmp=@/<Bar>s:\\:/:ge<Bar>let @/=tmp<Bar>noh<CR>
 nnoremap <Leader><Bslash> :let tmp=@/<Bar>s:/:\\:ge<Bar>let @/=tmp<Bar>noh<CR>
 " shortcut for jumping to tag
 source c:\Vim\vimfiles\scripts\get_project.vim
-map <F12> :source c:\Vim\vimfiles\scripts\get_project.vim<cr>:cd `=project_path`<cr>:stjump <C-r><C-w><CR>
+noremap <F12> :source c:\Vim\vimfiles\scripts\get_project.vim<cr>:cd `=project_path`<cr>:stjump <C-r><C-w><CR>
 nnoremap - /
+/*
 vnoremap // mmo<esc>O/*<esc>`mo*/<esc>
+*/
 vnoremap { mmo<esc>O{<esc>`mo}<esc>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -113,10 +115,10 @@ nnoremap <leader>bld :cd c:\Git\Newton_workspace\algo\<cr> :!build.cmd build_fir
 
 " run the memory map post script
 nnoremap <leader>map :cd c:\Git\Newton_workspace\algo\firmware\app\App_Audio\<cr> :! ..\\..\\..\\.build\\PostBuild.bat App_Virago Palpatine6.Wireless.TDI.1.0 App_Audio debug MapScan > maplog.txt<CR> :e maplog.txt<CR>
-imap <C-L> L. Konis
-imap <Tab> <C-x><C-p>
-vmap <F6> y:let @/=@"<cr>n
-map <F7> :source c:\Vim\vimfiles\scripts\get_project.vim<cr>:cd `=project_path`<cr>:e app\app_audio\App_audio.prx<cr>:cd app\app_audio<cr>:make<cr><ctrl-o>
+inoremap <C-L> L. Konis
+inoremap <Tab> <C-x><C-p>
+vnoremap <F6> y:let @/=@"<cr>n
+noremap <F7> :source c:\Vim\vimfiles\scripts\get_project.vim<cr>:cd `=project_path`<cr>:e app\app_audio\App_audio.prx<cr>:cd app\app_audio<cr>:make<cr><ctrl-o>
 nnoremap dg :diffget<CR>
 nnoremap dp :diffput<CR>
 nnoremap <F9> [c<CR>
@@ -212,7 +214,7 @@ function! ToggleSyntax()
 	syntax enable
     endif
 endfunction
-nmap <silent> ;s :call ToggleSyntax()<cr>
+nnoremap <silent> ;s :call ToggleSyntax()<cr>
 
 " capitalize and center - e.g. use builtin vim commands
 function! CapitalizeCenterAndMoveDown()
@@ -220,7 +222,7 @@ function! CapitalizeCenterAndMoveDown()
     center      "Built-in center command centers entire line
     +1          "Built-in relative motion (+1 line down)
 endfunction
-nmap <silent> \C :call CapitalizeCenterAndMoveDown()<cr>
+nnoremap <silent> \C :call CapitalizeCenterAndMoveDown()<cr>
 
 
 iabbrev <silent> CWD <C-R>=getcwd()<CR>
