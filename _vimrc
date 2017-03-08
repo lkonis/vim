@@ -16,7 +16,8 @@ if &shell=~#'bash$'
 endif
 
 
-" Pluggins {{{
+" Pluggins 
+" {{{
 " set the runtime path to include Vundle and initialize
 set rtp+=..\vimfiles\bundle\Vundle.vim
 call vundle#begin()
@@ -72,7 +73,8 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 " }}}
 
-" variables {{{
+" variables 
+" {{{
 " leader definition
 let mapleader = ','
 
@@ -83,20 +85,15 @@ let g:tagbar_ctags_bin = 'c:\ctags58\ctags.exe'
 
 " }}}
 
-" Mapping {{{
+" Mapping
+" {{{
+" Normal mode mapping
 " map C-n shortcut to open NERDTree
-noremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
 " change to forward/back slashes
 nnoremap <Leader>/ :let tmp=@/<Bar>s:\\:/:ge<Bar>let @/=tmp<Bar>noh<CR>
 nnoremap <Leader><Bslash> :let tmp=@/<Bar>s:/:\\:ge<Bar>let @/=tmp<Bar>noh<CR>
-" shortcut for jumping to tag
-source c:\Vim\vimfiles\scripts\get_project.vim
-noremap <F12> :source c:\Vim\vimfiles\scripts\get_project.vim<cr>:cd `=project_path`<cr>:stjump <C-r><C-w><CR>
 nnoremap - /
-/*
-vnoremap // mmo<esc>O/*<esc>`mo*/<esc>
-*/
-vnoremap { mmo<esc>O{<esc>`mo}<esc>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 " find all in file
@@ -111,23 +108,14 @@ nnoremap <leader>ffj :source c:\Vim\vimfiles\scripts\get_project.vim<cr>:cd `=pr
 nnoremap <leader>bld :cd c:\Git\Newton_workspace\algo\<cr> :!build.cmd build_firmware<CR>
 "nnoremap <F4> :e `=project_binfw_path`
 " nnoremap <leader>bld :cd c:\Git\Newton_workspace\algo\firmware<cr> :!"c:\Program Files\Target Compiler Technologies\DSP4.5.3.1-11R1.16\chess_env.bat" && chessmk +P9 -s app\App_Audio\App_Audio.prx<CR>
-
-
 " run the memory map post script
 nnoremap <leader>map :cd c:\Git\Newton_workspace\algo\firmware\app\App_Audio\<cr> :! ..\\..\\..\\.build\\PostBuild.bat App_Virago Palpatine6.Wireless.TDI.1.0 App_Audio debug MapScan > maplog.txt<CR> :e maplog.txt<CR>
-inoremap <C-L> L. Konis
-inoremap <Tab> <C-x><C-p>
-vnoremap <F6> y:let @/=@"<cr>n
-noremap <F7> :source c:\Vim\vimfiles\scripts\get_project.vim<cr>:cd `=project_path`<cr>:e app\app_audio\App_audio.prx<cr>:cd app\app_audio<cr>:make<cr><ctrl-o>
 nnoremap dg :diffget<CR>
 nnoremap dp :diffput<CR>
 nnoremap <F9> [c<CR>
 nnoremap <F10> ]c<CR>
 nnoremap <leader>dd :diffthis<CR><ctrl>ww:diffthis<CR>
 nnoremap <F5> :e!<CR>G
-vnoremap 8 meol<ESC>Bi(<ESC>`eEa)<ESC>
-
-
 " generate tags file for Newton firmware
 nnoremap <leader>ct :let cwd=getcwd()<cr>:cd `=project_path`<cr>:!c:\ctags58\ctags.exe --recurse=yes -L tag_file.txt -I clobbers<CR>:cd `=cwd`<cr>
 nnoremap <leader>cd :cd %:p:h<cr>
@@ -136,16 +124,41 @@ nnoremap <leader>cct :let cwd=getcwd()<cr>:cd `=project_path`<cr>:!c:\ctags58\ct
 
 " Folding
 nnoremap <Space> za
+" shortcut for jumping to tag
+source c:\Vim\vimfiles\scripts\get_project.vim
+nnoremap <F12> :source c:\Vim\vimfiles\scripts\get_project.vim<cr>:cd `=project_path`<cr>:stjump <C-r><C-w><CR>
+nnoremap <F7> :source c:\Vim\vimfiles\scripts\get_project.vim<cr>:cd `=project_path`<cr>:e app\app_audio\App_audio.prx<cr>:cd app\app_audio<cr>:make<cr><ctrl-o>
+
+" visual mode mapping
+vnoremap // mmo<esc>O/*<esc>`mo*/<esc>
+vnoremap { mmo<esc>O{<esc>`mo}<esc>
+vnoremap <F6> y:let @/=@"<cr>n
+vnoremap 8 meol<ESC>Bi(<ESC>`eEa)<ESC>
 vnoremap <Space> za
+
+
+" insert mode mapping
+inoremap <C-L> L. Konis
+inoremap <Tab> <C-x><C-p>
+inoremap <esc> <esc>:echoerr "!!!!!!! USE jk INSTEAD !!!!!!!"<cr>a
+inoremap jk <esc>
+
+
+
+
 
 " }}}
 
-" AUTOCMD {{{
+" AUTOCMD 
+" {{{
+autocmd!
+" Remove ALL autocommands for the current group.
 " set the syntax of Target project files (prx) to xml for syntax highlighting
 autocmd BufNewFile,BufRead *.prx set filetype=xml
 " allow put fold markers within vim scripts
 autocmd FileType vim setlocal foldmethod=marker
 autocmd FileType matlab setlocal foldmethod=indent
+autocmd FileType xml setlocal foldmethod=indent
 
 " open a NERDTree automatically when vim starts up if no files were specified
 autocmd StdinReadPre * let s:std_in=1
@@ -157,7 +170,8 @@ autocmd BufRead,BufNewFile *.prx compiler c5f16
 
 " }}}
 
-" SETTINGS {{{
+" SETTINGS 
+" {{{
 " handle ctags
 " ctags optimization
 "set autochdir
@@ -198,7 +212,8 @@ set lines=50 columns=120
 set noautochdir
 "}}}
 
-" ABBREVIATIONS {{{
+" ABBREVIATIONS 
+" {{{
 :iabbrev LIor Lior
 :iabbrev adn and
 :iabbrev tehn then
